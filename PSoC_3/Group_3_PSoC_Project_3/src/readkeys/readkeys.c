@@ -10,7 +10,7 @@
  Author      : Lars
  Version     :
  Copyright   : Your copyright notice
- Description : Hello World in C, Ansi-style
+ Description : Readkeys in C, Ansi-style
  ============================================================================
  */
 
@@ -19,11 +19,11 @@
 int Readkeys(int RawKeys)
 {
 
-	static int key_count[MAXBIT-1] = { 0,0,0,0,0,0,0,0 };
+	static int key_count[MAXbit - 1] = { 0, 0, 0, 0, 0, 0, 0 };
 
 	int loop_counter;
 
-		for( loop_counter = 0; loop_counter < MAXBIT; loop_counter++)
+		for( loop_counter = 0; loop_counter < MAXbit; loop_counter++)
 			{
 				if( RawKeys & (1 << loop_counter) )
 					{
@@ -35,7 +35,7 @@ int Readkeys(int RawKeys)
 					}
 			}
 
-		for( loop_counter = 0; loop_counter < MAXBIT; loop_counter++)
+		for( loop_counter = 0; loop_counter < MAXbit; loop_counter++)
 			{
 				if( key_count[loop_counter] > 5 )
 					{
@@ -45,7 +45,7 @@ int Readkeys(int RawKeys)
 			}
 
 
-//	if (RawKeys == 1 <<KEY0BIT)
+//	if (RawKeys == 1 <<KEY0bit)
 //		{
 //		if(RawKeys == 5 << key0_count)
 //			{
@@ -56,7 +56,7 @@ int Readkeys(int RawKeys)
 //			key0_count++;
 //		}
 //
-//	if (RawKeys == 1 <<KEY1BIT)
+//	if (RawKeys == 1 <<KEY1bit)
 //			{
 //			if(RawKeys == 5 << key1_count)
 //				{

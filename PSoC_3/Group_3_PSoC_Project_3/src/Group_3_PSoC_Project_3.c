@@ -17,17 +17,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "statemachine/menustatemashine.h"
 #include "readkeys/readkeys.h"
 
-int TS_State = SoundMesure;
+
 
 // forward function declarations
-void Do( int State );
-void OnEnter( int State );
-void OnExit( int State );
-
+void testMenuStatemashine( void );
 void testReadKeys( void );
-void DisplayMenu( int event );
+
 //------------------------------
 
 
@@ -36,12 +34,13 @@ int main( void )
 
 		puts( "Testing the readkeys function ..." ); /* prints Testing the Readkeys function */
 		testReadKeys();
-		DisplayMenu(KEY0_EVENT_Enter);
+		testMenuStatemashine();
 		return EXIT_SUCCESS;
 	}
 
 void testReadKeys( void )
 	{
+
 		// Testing key0 only
 		if( Readkeys( 0x01 ) != NO_EVENT )
 			{ printf( " failed on 1. call" );}
@@ -94,78 +93,10 @@ void testReadKeys( void )
 		else if( Readkeys( 0x18 ) != NO_EVENT )
 			{ printf( " failed on 22. call" );}
 		else
-			  printf( "passed !" );
+			  printf( "passed !\n" );
 	}
-void DisplayMenu(int event)
+
+void testMenuStatemashine( void )
 	{
-	int NextState = TS_State;
- 	switch( TS_State )
-		{
-		case SoundMesure:
-				switch (event )
-				{
-				case KEY0_EVENT_Enter:
-					NextState = MENU;
-					printf("Going to Menu \n");
-					break;
-				default:
-					break;
-				}
-				break;
-		case MENU:
-
-			switch (event )
-			{
-			case KEY2_EVENT_Left:
-
-				break;
-
-			case KEY3_EVENT_Rigth:
-
-				break;
-
-			case KEY1_EVENT_Cancel:
-				NextState = SoundMesure;
-				break;
-
-			case KEY0_EVENT_Enter:
-
-				break;
-
-			case TICK:
-
-				break;
-			default:
-				break;
-			}
-			break;
-
-		default:
-			break;
-				// The program should never get here !
-		}
-		if (NextState != TS_State)
-		{
-			OnExit(TS_State);
-			OnEnter(NextState);
-			TS_State = NextState;
-		}
-
-		Do( TS_State );
 	}
 
-
-void OnEnter( int State )
-	{
-
-	}
-
-void OnExit( int State )
-	{
-
-	}
-
-void Do( int State )
-	{
-
-	}
